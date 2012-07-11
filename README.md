@@ -20,3 +20,9 @@ max_value.times do |i|
   sleep 0.1
 end
 ```
+
+Configuration
+============
+
+- Procession.symbol The symbol to draw the progres bar (Default: #)
+- Procession.template The template of the output string (Default: "[%bar] %percent% %text")

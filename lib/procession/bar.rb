@@ -1,14 +1,19 @@
 module Procession
   class Bar
-    attr_accessor :max
+    attr_accessor :max, :out, :template
 
-    def initialize(max)
+    def initialize(max, out=$stdout)
       @max = max
+      @out = out
     end
 
     def update(item, &block)
       @item = item
       print_progress(&block)
+    end
+
+    def template
+      @template ||= Procession.template || "[%bar] %percent% %text"
     end
 
     private
@@ -20,14 +25,25 @@ module Procession
         ""
       end
 
-      print "\e[#{@last_line.length}D" if @last_line
+      clear(@last_line.length) if !@last_line.nil?
 
-      @last_line = "#{progress_bar} #{additional_info}"
-      print @last_line
+      @last_line = build_bar(additional_info)
+      out.write @last_line
+    end
+
+    def clear(number_of_chars)
+      @out.write "\e[#{number_of_chars}D"
+    end
+
+    def build_bar(additional_info)
+      self.template
+        .gsub('%bar', progress_bar)
+        .gsub('%percent', percent.to_s)
+        .gsub('%text', additional_info.to_s)
     end
 
     def progress_bar
-      "[#{symbol*symbols}#{" "*(20-symbols)}] #{percent}%"
+      "#{symbol*symbols}#{" "*(20-symbols)}"
     end
 
     def percent

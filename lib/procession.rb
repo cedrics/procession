@@ -9,4 +9,12 @@ module Procession
   def self.symbol=(value)
     @@symbol = value
   end
+
+  def self.template
+    @@template ||= nil
+  end
+
+  def self.template=(template)
+    @@template = template
+  end
 end
