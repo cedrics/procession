@@ -45,5 +45,22 @@ module Procession
       test_out.string == "\e12D"
     end
 
+    it 'should the specified amount of symbols' do
+      bar.length = 10
+
+      bar.update(1)
+
+      test_out.string.should == "[##{' ' * 9}] 10% "
+
+      test_out.string = ''
+
+      bar = Procession::Bar.new(10, test_out)
+
+      bar.length = 40
+      bar.update 1
+
+      test_out.string == "[#####{' ' * 16} 10% "
+    end
+
   end
 end

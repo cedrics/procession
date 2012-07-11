@@ -17,4 +17,12 @@ module Procession
   def self.template=(template)
     @@template = template
   end
+
+  def self.length
+    @@length ||= nil
+  end
+
+  def self.length=(length)
+    @@length = length
+  end
 end

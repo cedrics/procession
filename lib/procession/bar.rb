@@ -1,6 +1,6 @@
 module Procession
   class Bar
-    attr_accessor :max, :out, :template
+    attr_accessor :max, :out, :template, :length
 
     def initialize(max, out=$stdout)
       @max = max
@@ -14,6 +14,10 @@ module Procession
 
     def template
       @template ||= Procession.template || "[%bar] %percent% %text"
+    end
+
+    def length
+      @length ||= Procession.length || 20
     end
 
     private
@@ -43,7 +47,7 @@ module Procession
     end
 
     def progress_bar
-      "#{symbol*symbols}#{" "*(20-symbols)}"
+      "#{symbol*symbols}#{" "*(length-symbols)}"
     end
 
     def percent
@@ -51,7 +55,7 @@ module Procession
     end
 
     def symbols
-      (percent / 5).floor
+      (percent / (100 / length.to_f)).floor
     end
 
     def symbol

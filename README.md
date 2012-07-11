@@ -24,5 +24,6 @@ end
 Configuration
 ============
 
-- Procession.symbol The symbol to draw the progres bar (Default: #)
-- Procession.template The template of the output string (Default: "[%bar] %percent% %text")
+- `Procession.symbol` The symbol to draw the progres bar (Default: #)
+- `Procession.template` The template of the output string (Default: "[%bar] %percent% %text")
+- `Procession.length` The number of symbols in the progress bar (Default: 20)
