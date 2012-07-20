@@ -42,11 +42,7 @@ module Procession
     end
 
     def build_bar(additional_info)
-      self.template
-        .gsub('%bar', progress_bar)
-        .gsub('%percent', percent.to_s)
-        .gsub('%text', additional_info.to_s)
-        .gsub('%time', time)
+      self.template.gsub('%bar', progress_bar).gsub('%percent', percent.to_s).gsub('%text', additional_info.to_s).gsub('%time', time)
     end
 
     def progress_bar

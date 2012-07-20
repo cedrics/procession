@@ -14,7 +14,7 @@ pb = Procession::Bar.new(max_value)
 
 max_value.times do |i|
   pb.update(i) do |current_i|
-    "Where are at #{i}"
+    "We are at #{i}"
   end
 
   sleep 0.1
